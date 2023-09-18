@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmflux4ovtlgo"]
+
+[ext_resource type="Script" path="res://Scripts/PhysicsCharacter.gd" id="1_uifal"]
+[ext_resource type="Texture2D" uid="uid://dykjgsa4j7c4j" path="res://Sprites/PhysicsCharacter.png" id="1_xvp5w"]
+[ext_resource type="PackedScene" uid="uid://p222q58x3wgc" path="res://Scenes/crate.tscn" id="3_qlefh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okn0l"]
+size = Vector2(18, 18)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="RigidBody2D" parent="."]
+mass = 5.0
+gravity_scale = 0.0
+linear_damp = 1.0
+script = ExtResource("1_uifal")
+
+[node name="Sprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_xvp5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_okn0l")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Crate" parent="." instance=ExtResource("3_qlefh")]
+
+[node name="Crate2" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(-110, 4)
+
+[node name="Crate3" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(-95, -36)
+
+[node name="Crate4" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(-5, -48)
+
+[node name="Crate5" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(66, -42)
+
+[node name="Crate6" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(76, 11)
+
+[node name="Crate7" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(-92, 48)
+
+[node name="Crate8" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(-43, 46)
+
+[node name="Crate9" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(-52, 8)
+
+[node name="Crate10" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(18, 60)
+
+[node name="Crate11" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(91, 54)
+
+[node name="Crate12" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(118, -46)
+
+[node name="Crate13" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(126, 10)
+
+[node name="Crate14" parent="." instance=ExtResource("3_qlefh")]
+position = Vector2(-70, -67)
