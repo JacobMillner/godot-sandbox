@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmcp8qjlpt2fv"]
 
 [ext_resource type="Texture2D" uid="uid://btg3y7a6f8mrh" path="res://Sprites/tilemap.png" id="1_mmq21"]
-[ext_resource type="PackedScene" uid="uid://c0cs34hkjcuwu" path="res://Scenes/unit.tscn" id="2_g1buk"]
+[ext_resource type="PackedScene" uid="uid://boc1w3ot1x7l6" path="res://Scenes/PlayerUnit.tscn" id="2_u6pi8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fhorr"]
 texture = ExtResource("1_mmq21")
@@ -143,14 +143,14 @@ separation = Vector2i(1, 1)
 sources/0 = SubResource("TileSetAtlasSource_fhorr")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_l7fad"]
-vertices = PackedVector2Array(-128, -64, 0, -64, 0, -16, -20, -16, -128, 113, -20, 32, 0, 113, 0, 32)
+vertices = PackedVector2Array(-128, -64, 0, -64, 0, -18, -19, -18, -128, 113, -19, 34, 0, 113, 0, 34)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-128, -64, -128, 113, 0, 113, 0, 32, -20, 32, -20, -16, 0, -16, 0, -64)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-128, -64, -128, 113, 0, 113, 0, 34, -19, 34, -19, -18, 0, -18, 0, -64)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nobsk"]
-vertices = PackedVector2Array(128, 112, 0, 113, 0, 32, 19, 32, 128, -64, 19, -16, 0, -64, 0, -16)
+vertices = PackedVector2Array(128, 112, 0, 113, 0, 34, 19, 34, 128, -64, 19, -18, 0, -64, 0, -18)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(128, -64, 0, -64, 0, -16, 19, -16, 19, 32, 0, 32, 0, 113, 128, 112)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(128, -64, 0, -64, 0, -18, 19, -18, 19, 34, 0, 34, 0, 113, 128, 112)])
 
 [node name="Main" type="Node2D"]
 
@@ -169,4 +169,5 @@ navigation_polygon = SubResource("NavigationPolygon_nobsk")
 position = Vector2(0, 13)
 zoom = Vector2(2.8, 2.8)
 
-[node name="Unit" parent="." instance=ExtResource("2_g1buk")]
+[node name="PlayerUnit" parent="." instance=ExtResource("2_u6pi8")]
+position = Vector2(-55, 6)
