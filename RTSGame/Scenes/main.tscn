@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmcp8qjlpt2fv"]
+[gd_scene load_steps=9 format=3 uid="uid://dmcp8qjlpt2fv"]
 
+[ext_resource type="Script" path="res://Scenes/GameManager.gd" id="1_220ks"]
 [ext_resource type="Texture2D" uid="uid://btg3y7a6f8mrh" path="res://Sprites/tilemap.png" id="1_mmq21"]
 [ext_resource type="PackedScene" uid="uid://boc1w3ot1x7l6" path="res://Scenes/PlayerUnit.tscn" id="2_u6pi8"]
+[ext_resource type="PackedScene" uid="uid://mto52n0mjuwq" path="res://Scenes/EnemyUnit.tscn" id="3_f6mhi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fhorr"]
 texture = ExtResource("1_mmq21")
@@ -153,6 +155,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(128, -64, 0, -64, 0, -18, 19, -18, 19, 34, 0, 34, 0, 113, 128, 112)])
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_220ks")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_un0y1")
@@ -171,3 +174,6 @@ zoom = Vector2(2.8, 2.8)
 
 [node name="PlayerUnit" parent="." instance=ExtResource("2_u6pi8")]
 position = Vector2(-55, 6)
+
+[node name="Unit" parent="." instance=ExtResource("3_f6mhi")]
+position = Vector2(76, 11)
