@@ -6,9 +6,15 @@
 
 [node name="PlayerUnit" instance=ExtResource("1_s7nyf")]
 script = ExtResource("2_qs1bi")
+is_player = true
 
 [node name="SelectionVisual" type="Sprite2D" parent="." index="0"]
 visible = false
 modulate = Color(0.270588, 0.831373, 0, 1)
 position = Vector2(0, 5)
 texture = ExtResource("2_u7u3f")
+
+[node name="NavigationAgent2D" parent="." index="3"]
+path_desired_distance = 1.0
+target_desired_distance = 1.0
+path_max_distance = 10.0

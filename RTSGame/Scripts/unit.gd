@@ -18,7 +18,7 @@ var sprite : Sprite2D
 
 func _ready():
 	agent = $NavigationAgent2D
-	sprite = $Sprite2D
+	sprite = $Sprite
 
 	
 func _process(delta):
@@ -38,7 +38,7 @@ func _target_check():
 		var dist = global_position.distance_to(target.global_position)
 		
 		if dist <= attack_range:
-			agent.target_postion = global_position
+			agent.target_position = global_position
 			_try_attack_target()
 		else:
 			agent.target_position = target.global_position
