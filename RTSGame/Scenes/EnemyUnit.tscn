@@ -6,6 +6,9 @@
 
 [node name="Unit" instance=ExtResource("1_mtisi")]
 script = ExtResource("2_ytu43")
+detect_range = 100.0
+health = 70
+move_speed = 35.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("2_bk7jr")
