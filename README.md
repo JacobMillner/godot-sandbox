@@ -8,4 +8,5 @@ Sandbox of godot 4 projects
 - [Loops](Loops/README.md)
 - [Collisions](collision/README.md)
 - [RTS Game](RTSGame/README.md)
+- [3d Platformer](3dPlatformer/README.md)
 

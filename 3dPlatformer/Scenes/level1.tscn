@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpvqswijcbq0h"]
+[gd_scene load_steps=8 format=3 uid="uid://dpvqswijcbq0h"]
 
 [ext_resource type="PackedScene" uid="uid://bbc6rs7bddyo3" path="res://Platforms/platform_large.tscn" id="1_3sk7r"]
 [ext_resource type="PackedScene" uid="uid://0pkjb68gxl50" path="res://Entities/player.tscn" id="1_jtur6"]
 [ext_resource type="PackedScene" uid="uid://l6hs2v2gjc8u" path="res://Entities/enemy.tscn" id="3_635wc"]
 [ext_resource type="PackedScene" uid="uid://ys5llqgvnv6y" path="res://Entities/spikes.tscn" id="4_138cs"]
 [ext_resource type="PackedScene" uid="uid://cft3odp0hhpmd" path="res://Entities/coin.tscn" id="5_q8jnb"]
+[ext_resource type="PackedScene" uid="uid://cy2gdclryw1lk" path="res://Entities/end_flag.tscn" id="6_3n4qj"]
 
 [sub_resource type="Environment" id="Environment_ueyjq"]
 background_mode = 1
@@ -50,3 +51,6 @@ transform = Transform3D(0.846967, -0.531645, -0.00068544, 0.531645, 0.846967, 0.
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ueyjq")
+
+[node name="EndFlag" parent="." instance=ExtResource("6_3n4qj")]
+next_scene = "res://Scenes/level2.tscn"
