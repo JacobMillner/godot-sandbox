@@ -1,0 +1,126 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7jmjglm1ktyl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hopuc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bp3ee"]
+albedo_color = Color(0.321569, 0.482353, 0.411765, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tounp"]
+material = SubResource("StandardMaterial3D_bp3ee")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3voqq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nrs4r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dlc2h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lwlx1"]
+
+[node name="Main" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_hopuc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(6.30396, 0, 0, 0, 1, 0, 0, 0, 4.74127, 0, 0, 0)
+mesh = SubResource("BoxMesh_tounp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(6.30396, 0, 0, 0, 1, 0, 0, 0, 4.74127, 0, 0, 0)
+shape = SubResource("BoxShape3D_3voqq")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.979733, 0.200309, 0, -0.200309, 0.979733, 0, 3.19032, 5.80476)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.36421, 0.931317, 0, -0.931317, 0.36421, 0, 4.53626, 3.01198)
+light_energy = 3.0
+
+[node name="Rope" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20787, -0.538457, 0)
+
+[node name="3" type="RigidBody3D" parent="Rope"]
+transform = Transform3D(0.485832, 0.874053, 0, -0.874053, 0.485832, 0, 0, 0, 1, 1.00703, 3.30704, 0.157197)
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_nrs4r")
+max_contacts_reported = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/3"]
+shape = SubResource("CapsuleShape3D_dlc2h")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Rope/3"]
+mesh = SubResource("CapsuleMesh_lwlx1")
+skeleton = NodePath("../../..")
+
+[node name="4" type="RigidBody3D" parent="Rope"]
+transform = Transform3D(0.485832, 0.874053, 0, -0.874053, 0.485832, 0, 0, 0, 1, 1.89083, 3.7983, 0.157197)
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_nrs4r")
+max_contacts_reported = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/4"]
+shape = SubResource("CapsuleShape3D_dlc2h")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Rope/4"]
+mesh = SubResource("CapsuleMesh_lwlx1")
+skeleton = NodePath("../../..")
+
+[node name="5" type="RigidBody3D" parent="Rope"]
+transform = Transform3D(0.485832, 0.874053, 0, -0.874053, 0.485832, 0, 0, 0, 1, 2.77035, 4.28717, 0.157197)
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_nrs4r")
+max_contacts_reported = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/5"]
+shape = SubResource("CapsuleShape3D_dlc2h")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Rope/5"]
+mesh = SubResource("CapsuleMesh_lwlx1")
+skeleton = NodePath("../../..")
+
+[node name="2" type="RigidBody3D" parent="Rope"]
+transform = Transform3D(0.485832, 0.874053, 0, -0.874053, 0.485832, 0, 0, 0, 1, 0.100271, 2.80303, 0.157197)
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_nrs4r")
+max_contacts_reported = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/2"]
+shape = SubResource("CapsuleShape3D_dlc2h")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Rope/2"]
+mesh = SubResource("CapsuleMesh_lwlx1")
+skeleton = NodePath("../../..")
+
+[node name="1" type="RigidBody3D" parent="Rope"]
+transform = Transform3D(0.485832, 0.874053, 0, -0.874053, 0.485832, 0, 0, 0, 1, -0.833667, 2.28392, 0.157197)
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_nrs4r")
+max_contacts_reported = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/1"]
+shape = SubResource("CapsuleShape3D_dlc2h")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Rope/1"]
+mesh = SubResource("CapsuleMesh_lwlx1")
+skeleton = NodePath("../../..")
+
+[node name="PinJoint3D" type="PinJoint3D" parent="Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.592839, 2.39145, 0)
+node_a = NodePath("../1")
+node_b = NodePath("../2")
+
+[node name="PinJoint3D2" type="PinJoint3D" parent="Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.498551, 2.9468, 0.0630974)
+node_a = NodePath("../2")
+node_b = NodePath("../3")
+
+[node name="PinJoint3D3" type="PinJoint3D" parent="Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1849, 3.61355, 0.225108)
+node_a = NodePath("../3")
+node_b = NodePath("../4")
+
+[node name="PinJoint3D4" type="PinJoint3D" parent="Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26026, 3.91487, 0.354076)
+node_a = NodePath("../4")
+node_b = NodePath("../5")
