@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @onready var camera_3d = $Camera3D
 @onready var origCamPos : Vector3 = camera_3d.position
+@onready var floorcast = $FloorDetectRaycast
+@onready var footstep_sound = $FootstepSound
+
 var mouse_sense := 0.15
 var direction
 var speed := 4
@@ -11,6 +14,9 @@ const GRAVITY := 5
 var _delta := 0.0
 var camBobSpeed := 10
 var camBobUpDown := 1
+
+var distanceFootstep := 0.0
+var playFootstep := 5
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -25,10 +31,30 @@ func _input(event):
 func _process(delta):
 	process_camBob(delta)
 	
+	if floorcast.get_collider() != null:
+		var walkingTerrain = floorcast.get_collider().get_parent()
+		if walkingTerrain != null and len(walkingTerrain.get_groups()) > 0:
+			var terraingroup = walkingTerrain.get_groups()[0]
+			processGroundSounds(terraingroup)
+	
 
 func _physics_process(delta):
 	process_movement(delta)
 
+func processGroundSounds(group : String):
+	if playFootstep != 100 and (int(velocity.x) != 0 or int(velocity.z) != 0):
+		distanceFootstep += 0.1
+		
+	if distanceFootstep > playFootstep and is_on_floor():
+		match group:
+			"WoodTerrain":
+				footstep_sound.stream = load("res://Player/Sounds/Footsteps/wood/1.ogg")
+			"Grass":
+				footstep_sound.stream = load("res://Player/Sounds/Footsteps/grass/1.ogg")
+		footstep_sound.pitch_scale = randf_range(0.8, 1.2)
+		footstep_sound.play()
+		distanceFootstep = 0.0
+	
 func process_movement(delta):
 	direction = Vector3.ZERO
 	
