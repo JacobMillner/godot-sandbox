@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkjcui82osorn"]
+[gd_scene load_steps=11 format=3 uid="uid://bkjcui82osorn"]
 
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_36cif"]
 [ext_resource type="PackedScene" uid="uid://cpycnm587rvk6" path="res://Player/player.tscn" id="2_wkybm"]
+[ext_resource type="PackedScene" uid="uid://bguofu6vr6k28" path="res://Interactables/cube_interactable.tscn" id="3_nsrrb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cd0k4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -40,7 +41,7 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("2_wkybm")]
 
 [node name="WoodFloor" type="MeshInstance3D" parent="." groups=["WoodTerrain"]]
-transform = Transform3D(13.6219, 0, 0, 0, 0.096827, 0, 0, 0, 10.7012, 0, 0, 0)
+transform = Transform3D(29.9682, 0, 0, 0, 0.096827, 0, 0, 0, 10.7012, -8.2, 0, 0)
 mesh = SubResource("BoxMesh_i85tn")
 surface_material_override/0 = SubResource("StandardMaterial3D_yrhn3")
 
@@ -58,3 +59,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_d6an3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrassFloor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="CubeInteractable" parent="." instance=ExtResource("3_nsrrb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 2)

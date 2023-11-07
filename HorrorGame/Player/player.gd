@@ -4,9 +4,11 @@ extends CharacterBody3D
 @onready var origCamPos : Vector3 = camera_3d.position
 @onready var floorcast = $FloorDetectRaycast
 @onready var footstep_sound = $FootstepSound
+@onready var interact_cast = $Camera3D/InteractRayCast
 
 var mouse_sense := 0.15
 var direction
+var isRunning := false
 var speed := 4
 var jump := 30.0
 const GRAVITY := 5
@@ -27,6 +29,16 @@ func _input(event):
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sense))
 		camera_3d.rotate_x(deg_to_rad(-event.relative.y * mouse_sense))
 		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+	if Input.is_action_just_pressed("run"):
+		isRunning = true
+	if Input.is_action_just_released("run"):
+		isRunning = false
+	
+	if Input.is_action_just_pressed("interact"):
+		var interacted = interact_cast.get_collider()
+		if interacted != null and interacted.is_in_group("Interactable") \
+			and interacted.has_method("action_use"):
+				interacted.action_use()
 
 func _process(delta):
 	process_camBob(delta)
@@ -42,7 +54,12 @@ func _physics_process(delta):
 	process_movement(delta)
 
 func processGroundSounds(group : String):
-	if playFootstep != 100 and (int(velocity.x) != 0 or int(velocity.z) != 0):
+	if isRunning:
+		playFootstep = 5
+	else:
+		playFootstep = 6
+
+	if int(velocity.x) != 0 or int(velocity.z) != 0:
 		distanceFootstep += 0.1
 		
 	if distanceFootstep > playFootstep and is_on_floor():
@@ -65,8 +82,9 @@ func process_movement(delta):
 	
 	direction = Vector3(direction.x, 0, direction.z).rotated(Vector3.UP, h_rot).normalized()
 
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	var actualSpeed = speed * 2 if isRunning else speed
+	velocity.x = direction.x * actualSpeed
+	velocity.z = direction.z * actualSpeed
 	
 	var jump := 30.0
 	const GRAVITY := 5
@@ -83,7 +101,11 @@ func process_camBob(delta):
 	
 	var cam_bob
 	var objCam
-	if direction != Vector3.ZERO:
+	
+	if isRunning:
+		cam_bob = floor(abs(direction.z) + abs(direction.x)) * _delta * camBobSpeed * 1.5
+		objCam = origCamPos + Vector3.UP * sin(cam_bob) * camBobUpDown
+	elif direction != Vector3.ZERO:
 		cam_bob = floor(abs(direction.z) + abs(direction.x)) * _delta * camBobSpeed
 		objCam = origCamPos + Vector3.UP * sin(cam_bob) * camBobUpDown
 	else:

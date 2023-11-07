@@ -21,6 +21,10 @@ skeleton = NodePath("../CollisionShape3D")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
+[node name="InteractRayCast" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -5)
+collide_with_areas = true
+
 [node name="FloorDetectRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
