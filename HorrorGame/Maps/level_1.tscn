@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkjcui82osorn"]
+[gd_scene load_steps=13 format=3 uid="uid://bkjcui82osorn"]
 
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_36cif"]
 [ext_resource type="PackedScene" uid="uid://cpycnm587rvk6" path="res://Player/player.tscn" id="2_wkybm"]
+[ext_resource type="Material" uid="uid://cx5qe5cbty6ci" path="res://Assets/Materials/concrete_1.tres" id="3_cm4r8"]
+[ext_resource type="Material" uid="uid://b1sunaatg4n6u" path="res://Assets/Materials/wood_1.tres" id="3_nbmc7"]
 [ext_resource type="PackedScene" uid="uid://bguofu6vr6k28" path="res://Interactables/cube_interactable.tscn" id="3_nsrrb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cd0k4"]
@@ -15,18 +17,23 @@ sky_material = SubResource("ProceduralSkyMaterial_cd0k4")
 background_mode = 2
 sky = SubResource("Sky_52ife")
 tonemap_mode = 2
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+sdfgi_y_scale = 2
 glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_i85tn"]
+material = ExtResource("3_nbmc7")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrhn3"]
-albedo_color = Color(0.796078, 0.490196, 0.254902, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d6an3"]
+albedo_color = Color(0.196078, 0.580392, 0.301961, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5dkp8"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d6an3"]
-albedo_color = Color(0.196078, 0.580392, 0.301961, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_7867b"]
+material = ExtResource("3_cm4r8")
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_36cif")
@@ -35,20 +42,12 @@ script = ExtResource("1_36cif")
 environment = SubResource("Environment_mouwi")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -4, 21, -12)
 shadow_enabled = true
+directional_shadow_fade_start = 1.0
 
 [node name="Player" parent="." instance=ExtResource("2_wkybm")]
-
-[node name="WoodFloor" type="MeshInstance3D" parent="." groups=["WoodTerrain"]]
-transform = Transform3D(29.9682, 0, 0, 0, 0.096827, 0, 0, 0, 10.7012, -8.2, 0, 0)
-mesh = SubResource("BoxMesh_i85tn")
-surface_material_override/0 = SubResource("StandardMaterial3D_yrhn3")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="WoodFloor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodFloor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_5dkp8")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 0)
 
 [node name="GrassFloor" type="MeshInstance3D" parent="." groups=["Grass"]]
 transform = Transform3D(13.6219, 0, 0, 0, 0.096827, 0, 0, 0, 10.7012, 13.6, 0, 0)
@@ -62,3 +61,203 @@ shape = SubResource("ConcavePolygonShape3D_5dkp8")
 
 [node name="CubeInteractable" parent="." instance=ExtResource("3_nsrrb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 2)
+
+[node name="Building" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="ConcreteFloor" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, 0.096827, 0, 0, 0, 10.7012, -1.2, 0, 0)
+mesh = SubResource("BoxMesh_7867b")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/ConcreteFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/ConcreteFloor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="ConcreteFloor2" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, 0.096827, 0, 0, 0, 10.7012, 10.8, 0, 0)
+mesh = SubResource("BoxMesh_7867b")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/ConcreteFloor2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/ConcreteFloor2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="ConcreteFloor3" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, 0.096827, 0, 0, 0, 10.7012, 10.8, 0, 10)
+mesh = SubResource("BoxMesh_7867b")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/ConcreteFloor3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/ConcreteFloor3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="ConcreteFloor4" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, 0.096827, 0, 0, 0, 10.7012, 10.8, 0, -10.7)
+mesh = SubResource("BoxMesh_7867b")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/ConcreteFloor4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/ConcreteFloor4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodWall2" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, -4.23244e-09, -6.42072, 0, 0.096827, -2.80659e-07, -1.2, 3.12, 5.3)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodWall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodWall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodWall6" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, -4.23244e-09, -6.42072, 0, 0.096827, -2.80659e-07, 10.8, 3.12, 11.3)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodWall6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodWall6/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodWall3" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, -4.23244e-09, -6.42072, 0, 0.096827, -2.80659e-07, -1.2, 3.12, -5.3)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodWall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodWall3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodWall4" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, -4.23244e-09, -6.42072, 0, 0.096827, -2.80659e-07, 10.8, 3.12, 2.5)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodWall4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodWall4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodWall5" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, -4.23244e-09, -6.42072, 0, 0.096827, -2.80659e-07, 10.8, 3.12, -1.9)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodWall5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodWall5/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodWall7" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(11.9873, 0, 0, 0, -4.23244e-09, -6.42072, 0, 0.096827, -2.80659e-07, 10.8, 3.12, -10.9)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodWall7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodWall7/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodRoof" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(12.9463, 0, 0, 0, 0.096827, 1.43051e-07, 0, 0, 12.8414, -1.2, 6.4, 0.3)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodRoof"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodRoof/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodRoof2" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(12.9463, 0, 0, 0, 0.096827, 1.43051e-07, 0, 0, 12.8414, 9.8, 6.4, 4.9)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodRoof2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodRoof2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodRoof3" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(12.9463, 0, 0, 0, 0.096827, 1.43051e-07, 0, 0, 12.8414, 9.8, 6.4, -8.1)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodRoof3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodRoof3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodBackWall" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(-3.93391e-07, -0.0761014, -1.28746e-07, 6.51602, -1.86265e-09, -5.7554e-15, 0, 0, 11.5573, -6.9, 3.18, 0.3)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodBackWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodBackWall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodBackWall2" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(-3.93391e-07, -0.0761014, -1.28746e-07, 6.51602, -1.86265e-09, -5.7554e-15, 0, 0, 11.5573, 4.6, 3.18, 0.3)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodBackWall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodBackWall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodBackWall3" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(-3.93391e-07, -0.0761014, -6.30856e-08, 6.51602, -1.86265e-09, -2.82014e-15, 0, 0, 5.66307, 4.6, 3.18, 8.5)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodBackWall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodBackWall3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodBackWall5" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(-3.93391e-07, -0.0761014, -1.04091e-07, 6.51602, -1.86265e-09, -4.65324e-15, 0, 0, 9.34407, 15.6, 3.18, 7.2)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodBackWall5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodBackWall5/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodBackWall4" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(-3.93391e-07, -0.0761014, -6.30856e-08, 6.51602, -1.86265e-09, -2.82014e-15, 0, 0, 5.66307, 4.6, 3.18, -8.1)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodBackWall4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodBackWall4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="WoodBackWall6" type="MeshInstance3D" parent="Building" groups=["WoodTerrain"]]
+transform = Transform3D(-3.93391e-07, -0.0761014, -1.07245e-07, 6.51602, -1.86265e-09, -4.79424e-15, 0, 0, 9.62723, 10.6, 3.18, -6.7)
+mesh = SubResource("BoxMesh_i85tn")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Building/WoodBackWall6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/WoodBackWall6/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5dkp8")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 3, 0)
+light_energy = 1.277
+light_size = 0.312
+omni_range = 6.618
+omni_attenuation = 1.18921
