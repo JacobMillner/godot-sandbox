@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkjcui82osorn"]
+[gd_scene load_steps=16 format=3 uid="uid://bkjcui82osorn"]
 
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_36cif"]
 [ext_resource type="PackedScene" uid="uid://cpycnm587rvk6" path="res://Player/player.tscn" id="2_wkybm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://b1sunaatg4n6u" path="res://Assets/Materials/wood_1.tres" id="3_nbmc7"]
 [ext_resource type="PackedScene" uid="uid://bguofu6vr6k28" path="res://Interactables/cube_interactable.tscn" id="3_nsrrb"]
 [ext_resource type="PackedScene" uid="uid://b85jyytt1siav" path="res://Assets/MyModels/bed.glb" id="6_j1a4m"]
+[ext_resource type="PackedScene" uid="uid://0is2u4dalstq" path="res://Assets/MyModels/chair.gltf" id="7_dfomt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cd0k4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -274,4 +275,11 @@ light_size = 0.312
 omni_range = 6.618
 omni_attenuation = 1.18921
 
+[node name="chair" parent="." instance=ExtResource("7_dfomt")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -15.6793, 0.0484135, -2.2956)
+
+[node name="Chair" parent="chair" index="0"]
+transform = Transform3D(-0.0704355, 0, 0.997516, 0, 1, 0, -0.997516, 0, -0.0704355, 0, 1.06112, -3.5992)
+
 [editable path="bed"]
+[editable path="chair"]
