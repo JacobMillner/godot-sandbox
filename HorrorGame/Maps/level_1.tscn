@@ -292,6 +292,7 @@ shape = SubResource("ConcavePolygonShape3D_x3dum")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, -22.8, 3, -1)
+shaded = true
 texture_filter = 0
 texture = ExtResource("8_60yq6")
 

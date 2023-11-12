@@ -10,15 +10,15 @@ var mouse_sense := 0.15
 var direction
 var isRunning := false
 var speed := 4
-var jump := 30.0
-const GRAVITY := 5
+var jump := 35.0
+const GRAVITY := 4
 
 var _delta := 0.0
 var camBobSpeed := 10
 var camBobUpDown := 1
 
 var distanceFootstep := 0.0
-var playFootstep := 5
+var playFootstep := 3
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -85,9 +85,6 @@ func process_movement(delta):
 	var actualSpeed = speed * 2 if isRunning else speed
 	velocity.x = direction.x * actualSpeed
 	velocity.z = direction.z * actualSpeed
-	
-	var jump := 30.0
-	const GRAVITY := 5
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y += jump
