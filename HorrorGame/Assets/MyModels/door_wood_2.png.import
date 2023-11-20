@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://del1kbchari0j"
-path.s3tc="res://.godot/imported/bed_bedTextures.png-24ffe5a46d411d1bde696ecbfb32b3d8.s3tc.ctex"
+uid="uid://bn2ybh05pr2xi"
+path.s3tc="res://.godot/imported/door_wood_2.png-cab89463f3ee036f765abd7587215a9e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Assets/bed_bedTextures.png"
-dest_files=["res://.godot/imported/bed_bedTextures.png-24ffe5a46d411d1bde696ecbfb32b3d8.s3tc.ctex"]
+source_file="res://Assets/MyModels/door_wood_2.png"
+dest_files=["res://.godot/imported/door_wood_2.png-cab89463f3ee036f765abd7587215a9e.s3tc.ctex"]
 
 [params]
 
