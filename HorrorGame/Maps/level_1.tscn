@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bkjcui82osorn"]
+[gd_scene load_steps=20 format=3 uid="uid://bkjcui82osorn"]
 
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_36cif"]
 [ext_resource type="PackedScene" uid="uid://cpycnm587rvk6" path="res://Player/player.tscn" id="2_wkybm"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c2ck0bdlu0rjj" path="res://Assets/MyModels/bed.gltf" id="7_woh8h"]
 [ext_resource type="Texture2D" uid="uid://c76bfdtjfrmnn" path="res://Assets/painting.png" id="8_60yq6"]
 [ext_resource type="PackedScene" uid="uid://bodo3l0wyxvis" path="res://Interactables/door.tscn" id="9_vn6to"]
+[ext_resource type="PackedScene" uid="uid://df0ve4jmx8q4q" path="res://Interactables/key.tscn" id="10_8fm16"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cd0k4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -319,6 +320,11 @@ texture = ExtResource("8_60yq6")
 
 [node name="Door" parent="." instance=ExtResource("9_vn6to")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4, 0, 0.2)
+is_locked = true
+key_path = NodePath("../Key")
+
+[node name="Key" parent="." instance=ExtResource("10_8fm16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, -4)
 
 [editable path="chair"]
 [editable path="bed"]
