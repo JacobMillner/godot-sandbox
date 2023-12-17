@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bodo3l0wyxvis"]
+[gd_scene load_steps=18 format=3 uid="uid://bodo3l0wyxvis"]
 
 [ext_resource type="PackedScene" uid="uid://bfrxfq0whurv4" path="res://Interactables/interact_generic.tscn" id="1_7u0gq"]
 [ext_resource type="Script" path="res://Interactables/door.gd" id="2_4ll8y"]
 [ext_resource type="Texture2D" uid="uid://bn2ybh05pr2xi" path="res://Assets/MyModels/door_wood_2.png" id="2_ohc6i"]
 [ext_resource type="AudioStream" uid="uid://br1m55qrweny0" path="res://Interactables/doorClose_1.ogg" id="4_8qahw"]
+[ext_resource type="AudioStream" uid="uid://bdb5e8ccbiskp" path="res://Interactables/door_locked.ogg" id="4_ai7p1"]
 [ext_resource type="AudioStream" uid="uid://bw684wjy23yrg" path="res://Interactables/doorOpen_1.ogg" id="4_nh7fg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15dy6"]
@@ -94,6 +95,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SoundsDoor:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SoundsDoor:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_ai7p1")]
+}
 
 [sub_resource type="Animation" id="Animation_i6lq7"]
 resource_name = "door_close"
@@ -160,6 +185,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, -0.0872665, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SoundsDoor:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_ai7p1")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SoundsDoor:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(-0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_juwtv"]
@@ -253,5 +302,6 @@ libraries = {
 }
 
 [node name="SoundsDoor" type="AudioStreamPlayer3D" parent="." index="3"]
+stream = ExtResource("4_ai7p1")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
