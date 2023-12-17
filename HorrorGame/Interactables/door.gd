@@ -16,7 +16,7 @@ func _ready() -> void:
 func action_use():
 	if is_locked and !is_instance_valid(actual_key):
 		is_locked = false
-		
+
 	if !is_locked:
 		if can_interact:
 			if is_open:

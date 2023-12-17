@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var floorcast = $FloorDetectRaycast
 @onready var footstep_sound = $FootstepSound
 @onready var interact_cast = $Camera3D/InteractRayCast
+@onready var interact_label := $InteractL
 
 var mouse_sense := 0.15
 var direction
@@ -42,12 +43,24 @@ func _input(event):
 
 func _process(delta):
 	process_camBob(delta)
+	prompt_interactables()
 	
 	if floorcast.get_collider() != null:
 		var walkingTerrain = floorcast.get_collider().get_parent()
 		if walkingTerrain != null and len(walkingTerrain.get_groups()) > 0:
 			var terraingroup = walkingTerrain.get_groups()[0]
 			processGroundSounds(terraingroup)
+
+func prompt_interactables():
+	if interact_cast.is_colliding():
+		if is_instance_valid(interact_cast.get_collider()):
+			if interact_cast.get_collider().is_in_group("Interactable"):
+				interact_label.text = interact_cast.get_collider().type_name
+				interact_label.visible = true
+			else:
+				interact_label.visible = false
+	else:
+		interact_label.visible = false
 	
 
 func _physics_process(delta):
