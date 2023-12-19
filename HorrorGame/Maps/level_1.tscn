@@ -324,7 +324,7 @@ is_locked = true
 key_path = NodePath("../Key")
 
 [node name="Key" parent="." instance=ExtResource("10_8fm16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, -4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.8, 0.7, 0.8)
 
 [editable path="chair"]
 [editable path="bed"]

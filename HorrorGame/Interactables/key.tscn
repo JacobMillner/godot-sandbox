@@ -1,8 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://df0ve4jmx8q4q"]
 
 [ext_resource type="Script" path="res://Interactables/key.gd" id="1_gnmsi"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_h4yf7"]
+[ext_resource type="PackedScene" uid="uid://cflurmyqtramr" path="res://Interactables/key2.gltf" id="2_hip5u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pucxx"]
 size = Vector3(1, 3, 1)
@@ -11,14 +10,8 @@ size = Vector3(1, 3, 1)
 script = ExtResource("1_gnmsi")
 type_name = "Key"
 
-[node name="Key" type="Area3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Key"]
-mesh = SubResource("CapsuleMesh_h4yf7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Key" groups=["Interactable"]]
-transform = Transform3D(1.3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_pucxx")
+[node name="key2" parent="." instance=ExtResource("2_hip5u")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Interactable"]]
 transform = Transform3D(1.3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
