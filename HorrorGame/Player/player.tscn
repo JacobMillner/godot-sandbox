@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpycnm587rvk6"]
+[gd_scene load_steps=10 format=3 uid="uid://cpycnm587rvk6"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_v1ep3"]
+[ext_resource type="Shader" path="res://Player/vhs.gdshader" id="2_r2mok"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dho6o"]
 
@@ -8,6 +9,51 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_1mqud"]
 font_size = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p2ti3"]
+shader = ExtResource("2_r2mok")
+shader_parameter/shake = 0.0
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.05
+shader_parameter/colorOffsetIntensity = 0.135
+
+[sub_resource type="Animation" id="Animation_sntcm"]
+resource_name = "fade_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_clcam"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7iun1"]
+_data = {
+"RESET": SubResource("Animation_clcam"),
+"fade_in": SubResource("Animation_sntcm")
+}
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -39,11 +85,40 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -30.5
-offset_top = -11.5
-offset_right = 30.5
-offset_bottom = 11.5
+offset_left = -15.5
+offset_top = -6.0
+offset_right = 15.5
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 text = "Interact"
 label_settings = SubResource("LabelSettings_1mqud")
+
+[node name="ShaderVHS" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_p2ti3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Crosshair" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(212, 120, 213, 119, 214, 120, 213, 121)
+
+[node name="Fade" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7iun1")
+}
+autoplay = "fade_in"

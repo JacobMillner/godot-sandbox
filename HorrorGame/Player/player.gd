@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var footstep_sound = $FootstepSound
 @onready var interact_cast = $Camera3D/InteractRayCast
 @onready var interact_label := $InteractL
+@onready var crosshair = $Crosshair
 
 var mouse_sense := 0.5
 var direction
@@ -57,8 +58,10 @@ func prompt_interactables():
 			if interact_cast.get_collider().is_in_group("Interactable"):
 				interact_label.text = interact_cast.get_collider().type_name
 				interact_label.visible = true
+				crosshair.visible = false
 			else:
 				interact_label.visible = false
+				crosshair.visible = true
 	else:
 		interact_label.visible = false
 	
