@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpycnm587rvk6"]
+[gd_scene load_steps=5 format=3 uid="uid://cpycnm587rvk6"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_v1ep3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dho6o"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rr861"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1mqud"]
+font_size = 8
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -43,3 +46,4 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Interact"
+label_settings = SubResource("LabelSettings_1mqud")

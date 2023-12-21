@@ -7,7 +7,7 @@ extends CharacterBody3D
 @onready var interact_cast = $Camera3D/InteractRayCast
 @onready var interact_label := $InteractL
 
-var mouse_sense := 0.15
+var mouse_sense := 0.5
 var direction
 var isRunning := false
 var speed := 4
