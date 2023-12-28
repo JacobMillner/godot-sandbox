@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 @onready var camera_3d = $Camera3D
@@ -42,8 +43,11 @@ func _input(event):
 			and interacted.has_method("action_use"):
 				interacted.action_use()
 
-func _process(delta):
-	process_camBob(delta)
+func _physics_process(delta):
+	if direction != null:
+		process_camBob(delta)
+	
+	process_movement(delta)
 	prompt_interactables()
 	
 	if floorcast.get_collider() != null:
@@ -64,16 +68,12 @@ func prompt_interactables():
 				crosshair.visible = true
 	else:
 		interact_label.visible = false
-	
-
-func _physics_process(delta):
-	process_movement(delta)
 
 func processGroundSounds(group : String):
 	if isRunning:
-		playFootstep = 5
+		playFootstep = 2
 	else:
-		playFootstep = 6
+		playFootstep = 4
 
 	if int(velocity.x) != 0 or int(velocity.z) != 0:
 		distanceFootstep += 0.1
